@@ -26,6 +26,7 @@ t1 = datetime.now()
 try:
     for port in range(22,81):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# Set socket timeout to speed things up        
         sock.settimeout(0.2)
         result = sock.connect_ex((remoteServerIP, port))
         if result == 0:

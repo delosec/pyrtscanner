@@ -24,8 +24,9 @@ t1 = datetime.now()
 # We also put in some error handling for catching errors
 
 try:
-    for port in range(1,1025):  
+    for port in range(22,81):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(0.2)
         result = sock.connect_ex((remoteServerIP, port))
         if result == 0:
             print "Port {}: 	 Open".format(port)

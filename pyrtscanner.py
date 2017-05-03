@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-# a very simple python 2.x port scanner and banner grabber
-# By jcas1 https://github.com/jcas1 
+# a very simple python 2.x port scanner
 import socket
 import subprocess
 import sys
@@ -31,22 +30,27 @@ try:
 # Set timeout to speed up the scan
         sock.settimeout(0.2)
         result = sock.connect_ex((remoteServerIP, port))
+# If result (port) open (0) try and get data
         if result == 0:
              try:
-                 while result == 0:
-                      banner = sock.recv(4096)
-                      print "Port {}:      Open".format(port)
-                      print banner
-                 sock.close()
+# Grab the banner if socket connection sending data
+                  banner = sock.recv(4096)
+# Print port number
+                  print "Port {}:      Open".format(port)
+# Print banner
+                  print banner
+# if no data sent but the port is open, print a port open message and then throw an error, before closing the connection
              except socket.error:
+                 print "Port {}:      Open, but it sent no data :(".format(port)
                  sock.close()
+        sock.close()
 
 except KeyboardInterrupt:
     print "You pressed Ctrl+C"
     sys.exit()
 
 except socket.gaierror:
-    print 'Hostname could not be resolved. Exiting'
+    print 'Hostname {} could not be resolved. Exiting'.format(remoteServer)
     sys.exit()
 
 except socket.error:

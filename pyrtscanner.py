@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# a very simple python 2.x port scanner
+# a very simple python 2.x port scanner and banner grabber
 import socket
 import subprocess
 import sys

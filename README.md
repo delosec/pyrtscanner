@@ -2,7 +2,9 @@
 Simple python port scanner and banner grabber - First Python network project
 Usage 
 python pyrtscan.py
-plug in IP address when prompted
+
+plug in IP address or hostname when prompted
+
 Kick back and relax.
 
 TODO:

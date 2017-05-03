@@ -39,13 +39,6 @@ try:
                  sock.close()
              except socket.error:
                  sock.close()
-#    try:
-#        while result == 0:
-#             banner = sock.recv(4096)
-#             print banner
-#        sock.close()
-#    except socket.error:
-#        sock.close()
 
 except KeyboardInterrupt:
     print "You pressed Ctrl+C"

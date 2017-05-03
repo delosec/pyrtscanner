@@ -25,7 +25,7 @@ t1 = datetime.now()
 # We also put in some error handling for catching errors
 
 try:
-    for port in range(1,111):
+    for port in range(1,1024):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # Set timeout to speed up the scan
         sock.settimeout(0.2)

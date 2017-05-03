@@ -40,7 +40,7 @@ try:
                   print "Port {}:      Open".format(port)
 # Print banner
                   print banner
-# if no data sent but the port is open, print a port open message and then throw an error, before closing the connection
+# if no data sent but the port is open, print a port open message before closing the connection
              except socket.error:
                  print "Port {}:      Open, but it sent no data :(".format(port)
                  sock.close()

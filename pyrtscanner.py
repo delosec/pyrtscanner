@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# a very simple python 2.x port scanner
 import socket
 import subprocess
 import sys
@@ -7,7 +8,7 @@ from datetime import datetime
 # Clear the screen
 subprocess.call('clear', shell=True)
 
-# Ask for input
+# Have to update raw input to input for python 3 and eval
 remoteServer    = raw_input("Enter a remote host to scan: ")
 remoteServerIP  = socket.gethostbyname(remoteServer)
 
@@ -24,14 +25,27 @@ t1 = datetime.now()
 # We also put in some error handling for catching errors
 
 try:
-    for port in range(22,81):
+    for port in range(1,111):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# Set socket timeout to speed things up        
+# Set timeout to speed up the scan
         sock.settimeout(0.2)
         result = sock.connect_ex((remoteServerIP, port))
         if result == 0:
-            print "Port {}: 	 Open".format(port)
-        sock.close()
+             try:
+                 while result == 0:
+                      banner = sock.recv(4096)
+                      print "Port {}:      Open".format(port)
+                      print banner
+                 sock.close()
+             except socket.error:
+                 sock.close()
+#    try:
+#        while result == 0:
+#             banner = sock.recv(4096)
+#             print banner
+#        sock.close()
+#    except socket.error:
+#        sock.close()
 
 except KeyboardInterrupt:
     print "You pressed Ctrl+C"
@@ -42,7 +56,7 @@ except socket.gaierror:
     sys.exit()
 
 except socket.error:
-    print "Couldn't connect to server"
+    print "Couldn't connect to server on {}:".format(port)
     sys.exit()
 
 # Checking the time again

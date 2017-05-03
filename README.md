@@ -7,6 +7,6 @@ Kick back and relax.
 
 TODO:
 
-Add hostname functionality
+Add HTTP GET/POST socket.send for ports that don't send data
 
 Add specific port functionality

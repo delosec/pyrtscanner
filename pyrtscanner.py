@@ -35,7 +35,7 @@ try:
         if result == 0:
              try:
 # Grab the banner if socket connection sending data
-                  banner = sock.recv(4096)
+                  banner = sock.recv(104096)
 # Print port number
                   print "Port {}:      Open".format(port)
 # Print banner
